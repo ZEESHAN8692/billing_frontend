@@ -22,9 +22,8 @@ const menuItems = [
     label: "Inventory",
     icon: <PackageIcon size={20} />,
     subMenu: [
-      { label: "Product", path: "/product" },
-      { label: "Groups", path: "/group" },
-      { label: "Adjustments", path: "/inventory-adjustment" },
+      { label: "Add Product", path: "/add-products" },
+      { label: "Products List", path: "/product-list" },
     ],
   },
   {
@@ -32,31 +31,17 @@ const menuItems = [
     icon: <ShoppingCartIcon size={20} />,
     subMenu: [
       { label: "Customers", path: "/customers" },
-      { label: "Doctors", path: "/doctors" },
+      { label: "Add Customers", path: "/add-customers" },
+      { label: "Create Invoice", path: "/create-invoices" },
       { label: "Invoices", path: "/invoices" },
-      { label: "Payments Received", path: "/payments-received" },
-      { label: "Sales Return", path: "/sales-return" },
-      { label: "Credit Notes", path: "/credit-notes" },
     ],
   },
   {
     label: "Purchases",
     icon: <UsersIcon size={20} />,
     subMenu: [
-      { label: "Vendors", path: "/vendor" },
-      { label: "Purchase Orders", path: "/purchases-order" },
-      { label: "Purchase Receive", path: "/purchases-receive" },
-      { label: "Purchase Bills", path: "/purchases-bills" },
-      { label: "Payment Made", path: "/payment-made" },
-      { label: "Credit Note", path: "/credit-note" },
-    ],
-  },
-  {
-    label: "Reports",
-    icon: <BarChart2Icon size={20} />,
-    subMenu: [
-      { label: "Reports1", path: "/reports1" },
-      { label: "Reports2", path: "/reports2" },
+      { label: "Purchase Order", path: "/purchase-order" },
+      { label: "Add Purchase Order", path: "/add-purchase" },
     ],
   },
 ];

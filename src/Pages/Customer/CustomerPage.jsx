@@ -1,11 +1,11 @@
-import AddCustomerForm from "../../Components/Customer/AddCustomerFrom";
+import AddCustomerForm from "../../Components/Customers/AddCustomerFrom";
+
 
 const CustomerPage = () => {
   return (
-    <div className="p-8">
+    <>
       <AddCustomerForm />
-
-    </div>
+    </>
   );
 };
 

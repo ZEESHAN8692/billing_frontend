@@ -3,11 +3,29 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { HelmetProvider } from "react-helmet-async";
+import { ToastContainer } from "react-toastify";
+import { Provider } from "react-redux";
+import store from "./Redux/Store/store";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HelmetProvider>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        // transition={Bounce}
+      />
     </HelmetProvider>
   </StrictMode>
 );

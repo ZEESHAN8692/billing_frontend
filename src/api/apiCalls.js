@@ -7,8 +7,8 @@ import {
   deletePurchase_end,
   listPurchase_end,
   getInvoice_end,
-  getSingleInvoice_end,
   deleteInvoice_end,
+  getSingleInvoice_end,
 } from "../api/api_url";
 
 async function getCustomers() {

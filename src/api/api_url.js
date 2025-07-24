@@ -24,10 +24,10 @@ const deletePurchase_end = "api/delete-purchase";
 
 // Invoice end poipoint
 const createInvoice_end = "api/add-invoice";
-const getInvoice_end = "api/invoice";
-const getSingleInvoice_end = "invoice/";
-const updateInvoice_end = "update-invoice";
-const deleteInvoice_end = "delete-invoice";
+const getInvoice_end = "api/list-invoice";
+const getSingleInvoice_end = "api/invoice";
+const updateInvoice_end = "api/update-invoice";
+const deleteInvoice_end = "api/delete-invoice";
 
 export {
   base_url,

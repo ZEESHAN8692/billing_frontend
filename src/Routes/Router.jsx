@@ -17,6 +17,9 @@ const ProductsPage = lazy(() => import("../Pages/ProductsPage/ProductsPage"));
 const Signup = lazy(() => import("../Pages/authentication/signup"));
 const Login = lazy(() => import("../Pages/authentication/login"));
 const Dashboard = lazy(() => import("../Pages/Dashboard/Dashboard"));
+const InvoiceComponent = lazy(() =>
+  import("../Pages/Invoice/InvoiceComponent")
+);
 
 const Router = () => {
   return (
@@ -40,6 +43,10 @@ const Router = () => {
               <Route path="/purchase-order" element={<PurchaseTable />} />
               <Route path="/create-invoices" element={<CreateInvoices />} />
               <Route path="/invoices" element={<Invoices />} />
+              <Route
+                path="/download-invoice/:id"
+                element={<InvoiceComponent />}
+              />
             </Route>
           </Route>
         </Routes>

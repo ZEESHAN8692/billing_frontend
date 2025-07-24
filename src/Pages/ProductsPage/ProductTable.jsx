@@ -30,32 +30,29 @@ const ProductTable = () => {
   };
   return (
     <>
-      <div className="bg-gray-100 shadow-md rounded p-4">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold">Products</h2>
-          <div className="flex items-center">
+      <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">Products</h2>
+          <div className="flex items-center gap-6">
             <input
               type="search"
-              className="bg-gray-100 rounded p-2 w-64 border border-gray-200"
+              className="bg-gray-200 rounded-lg px-4 py-2 w-64 border border-gray-300"
               placeholder="Search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button className="bg-[#3B58FF] text-white rounded p-2 ml-2 cursor-pointer">
-              Search
-            </button>
             <button
-              className="bg-green-500 text-white rounded p-2 ml-2 cursor-pointer"
+              className="bg-[#3B58FF] hover:bg-[#2C66F5] text-white font-semibold rounded-lg px-4 py-2"
               onClick={() => navigate("/add-products")}
             >
               Add Product
             </button>
           </div>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full border-b border-gray-200">
-            <thead>
-              <tr className="bg-[#DADDEC]">
+        <div className="overflow-x-auto rounded-lg shadow-lg">
+          <table className="w-full">
+            <thead className="bg-[#DADDEC]">
+              <tr>
                 <th className="px-4 py-2">Name</th>
                 <th className="px-4 py-2">SKU</th>
                 <th className="px-4 py-2">HSN Code</th>
@@ -76,13 +73,13 @@ const ProductTable = () => {
                   <td className="px-4 py-2">{product.stockQty}</td>
                   <td className="px-4 py-2">
                     <button
-                      className="bg-[#3B58FF] text-white rounded p-2 mr-2 cursor-pointer"
+                      className="bg-[#3B58FF] hover:bg-[#2C66F5] text-white font-semibold rounded-lg px-4 py-2 mr-2"
                       onClick={() => toast.warning("code not found")}
                     >
                       Edit
                     </button>
                     <button
-                      className="bg-red-500 text-white rounded p-2 cursor-pointer"
+                      className="bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg px-4 py-2"
                       onClick={() => handleDelete(product._id)}
                     >
                       Delete

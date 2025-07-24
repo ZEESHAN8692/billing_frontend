@@ -68,7 +68,7 @@ export default function Sidebar({ className }) {
         onClick={() => setCollapsed(!collapsed)}
       >
         <img
-          src={collapsed ? "/logo/logo.png" : "/logo/logo.png"}
+          src={collapsed ? "/logo/logosmall.png" : "/logo/logo.png"}
           alt="Logo"
           className="h-12 transition-all duration-300"
         />

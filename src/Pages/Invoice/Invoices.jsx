@@ -30,71 +30,107 @@ const Invoices = () => {
     }
   };
   return (
-    // <>hhh</>
     <>
-      <div className="bg-gray-100 shadow-md rounded p-4">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold">Invoices</h2>
-          <div className="flex items-center">
-            <input
-              type="search"
-              className="bg-gray-100 rounded p-2 w-64 border border-gray-200"
-              placeholder="Search"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button className="bg-[#3B58FF] text-white rounded p-2 ml-2 cursor-pointer">
-              Search
+      <div className="bg-white shadow-lg rounded-lg p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">Invoices</h2>
+          <div className="flex items-center gap-6">
+            <button
+              className="bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg px-4 py-2"
+              onClick={() => navigate("/")}
+            >
+              Dashboard
             </button>
+            <button
+              className="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg px-4 py-2"
+              onClick={() => navigate("/create-invoices")}
+            >
+              Create Invoice
+            </button>
+            <div className="flex items-center">
+              <input
+                type="search"
+                className="bg-gray-200 rounded-lg px-4 py-2 w-72 border border-gray-300"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg px-4 py-2 ml-2">
+                Search
+              </button>
+            </div>
           </div>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full border-b border-gray-200">
+          <table className="min-w-full bg-white border border-gray-200">
             <thead>
-              <tr className="bg-[#DADDEC]">
-                <th className="px-4 py-2">Invoice ID</th>
-                <th className="px-4 py-2">Customer</th>
-                {/* <th className="px-4 py-2">Product</th> */}
-                <th className="px-4 py-2">Total Amount</th>
-                <th className="px-4 py-2">Payment Status</th>
-                <th className="px-4 py-2">Payment Method</th>
-                <th className="px-4 py-2">Invoice Date</th>
-                <th className="px-4 py-2">Actions</th>
+              <tr className="bg-gray-100">
+                <th className="px-6 py-3 text-left font-medium text-gray-600">
+                  Invoice ID
+                </th>
+                <th className="px-6 py-3 text-left font-medium text-gray-600">
+                  Customer
+                </th>
+                <th className="px-6 py-3 text-left font-medium text-gray-600">
+                  Total Amount
+                </th>
+                <th className="px-6 py-3 text-left font-medium text-gray-600">
+                  Payment Status
+                </th>
+                <th className="px-6 py-3 text-left font-medium text-gray-600">
+                  Payment Method
+                </th>
+                <th className="px-6 py-3 text-left font-medium text-gray-600">
+                  Invoice Date
+                </th>
+                <th className="px-6 py-3 text-left font-medium text-gray-600">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody>
               {filteredInvoices?.map((invoice) => (
-                <tr key={invoice._id} className="border-b border-gray-200">
-                  <td className="px-4 py-2">{invoice?.invoiceId}</td>
-                  <td className="px-4 py-2">{invoice?.customer.name}</td>
-                  {/* <td className="px-4 py-2">{invoice?.product.name}</td> */}
-                  <td className="px-4 py-2">{invoice?.totalAmount}</td>
-                  <td className="px-4 py-2">{invoice?.paymentStatus}</td>
-                  <td className="px-4 py-2">{invoice?.paymentMethod}</td>
-                  <td className="px-4 py-2">
+                <tr
+                  key={invoice._id}
+                  className="hover:bg-gray-50 border-b border-gray-200"
+                >
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {invoice?.invoiceId}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {invoice?.customer.name}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {invoice?.totalAmount}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {invoice?.paymentStatus}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {invoice?.paymentMethod}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
                     {new Date(invoice?.invoiceDate).toLocaleString("en-GB", {
                       day: "numeric",
                       month: "numeric",
                       year: "numeric",
                     })}
                   </td>
-                  <td className="px-4 py-2">
+                  <td className="px-6 py-4 whitespace-nowrap flex space-x-4">
                     <button
-                      className="bg-[#3B58FF] text-white rounded p-2 mr-2 cursor-pointer"
-                      style={{ marginRight: "0.5rem" }}
+                      className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-2"
                       onClick={() => navigate(`/invoices/${invoice._id}`)}
                     >
                       <FaEdit />
                     </button>
                     <button
-                      className="bg-red-500 text-white rounded p-2 mr-2 cursor-pointer"
-                      style={{ marginRight: "0.5rem" }}
+                      className="bg-red-500 hover:bg-red-600 text-white rounded-lg p-2"
                       onClick={() => handleDelete(invoice._id)}
                     >
                       <FaTrash />
                     </button>
                     <button
-                      className="bg-green-500 text-white rounded p-2 cursor-pointer"
+                      className="bg-green-500 hover:bg-green-600 text-white rounded-lg p-2"
                       onClick={() =>
                         navigate(`/download-invoice/${invoice._id}`)
                       }

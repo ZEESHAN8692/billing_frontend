@@ -30,32 +30,42 @@ const PurchaseTable = () => {
   };
   return (
     <>
-      <div className="bg-gray-100 shadow-md rounded p-4">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold">Purchases</h2>
-          <div className="flex items-center">
-            <input
-              type="search"
-              className="bg-gray-100 rounded p-2 w-64 border border-gray-200"
-              placeholder="Search"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button className="bg-[#3B58FF] text-white rounded p-2 ml-2 cursor-pointer">
-              Search
+      <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">Purchases</h2>
+          <div className="flex items-center gap-6">
+            <button
+              className="bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded-lg px-4 py-2"
+              onClick={() => navigate("/")}
+            >
+              Dashboard
             </button>
             <button
-              className="bg-green-500 text-white rounded p-2 ml-2 cursor-pointer"
+              className="bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg px-4 py-2"
               onClick={() => navigate("/add-purchase")}
             >
               Add Purchase
             </button>
+
+            <input
+              type="search"
+              className="bg-gray-200 rounded-lg px-4 py-2 w-64 border border-gray-300"
+              placeholder="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg px-4 py-2"
+              onClick={() => refetch()}
+            >
+              Search
+            </button>
           </div>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full border-b border-gray-200">
-            <thead>
-              <tr className="bg-[#DADDEC]">
+        <div className="overflow-x-auto rounded-lg shadow-lg">
+          <table className="w-full">
+            <thead className="bg-[#DADDEC]">
+              <tr>
                 <th className="px-4 py-2">Product Name</th>
                 <th className="px-4 py-2">Supplier</th>
                 <th className="px-4 py-2">Quantity</th>
@@ -65,20 +75,20 @@ const PurchaseTable = () => {
             </thead>
             <tbody>
               {filteredPurchases?.map((purchase) => (
-                <tr key={purchase._id} className="border-b border-gray-200">
+                <tr key={purchase._id} className="hover:bg-[#F5F5F5]">
                   <td className="px-4 py-2">{purchase.product.name}</td>
                   <td className="px-4 py-2">{purchase.supplier}</td>
                   <td className="px-4 py-2">{purchase.quantity}</td>
                   <td className="px-4 py-2">{purchase.purchasePrice}</td>
                   <td className="px-4 py-2">
                     <button
-                      className="bg-[#3B58FF] text-white rounded p-2 mr-2 cursor-pointer"
+                      className="bg-[#3B58FF] hover:bg-[#2C66F5] text-white font-semibold rounded-lg px-4 py-2 mr-2 cursor-pointer"
                       onClick={() => toast.warning("code not found")}
                     >
                       Edit
                     </button>
                     <button
-                      className="bg-red-500 text-white rounded p-2 cursor-pointer"
+                      className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg px-4 py-2 cursor-pointer"
                       onClick={() => handleDelete(purchase._id)}
                     >
                       Delete

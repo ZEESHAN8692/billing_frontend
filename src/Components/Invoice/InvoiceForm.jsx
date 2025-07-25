@@ -26,6 +26,7 @@ const InvoiceForm = () => {
   const [items, setItems] = useState([
     { productId: "", price: 0, quantity: 1, tax: 0 },
   ]);
+  // console.log("Data Invoice Create", invoice);
 
   const resetForm = () => {
     setCustomerId("");
@@ -75,10 +76,15 @@ const InvoiceForm = () => {
       paymentMethod: paymentMethod,
       date: new Date().toISOString(),
     };
-
-    dispatch(createInvoice(invoice));
-    toast.success("Invoice created! Check console.");
-    resetForm();
+    try {
+     
+      dispatch(createInvoice(invoice));
+      toast.success("Invoice created successfully!");
+      resetForm();
+    } catch (err) {
+      console.error("Invoice creation failed:", err);
+      toast.error(err?.message || "Failed to create invoice.");
+    }
   };
 
   return (

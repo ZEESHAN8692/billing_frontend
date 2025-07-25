@@ -3,9 +3,11 @@ import { deleteCustomer, getCustomers } from "../../api/apiCalls";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../Spinner/Spinner";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaEdit, FaTrash, FaEye } from "react-icons/fa";
 
 const CustomerTable = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const { isLoading, data, isError, error, refetch } = useQuery({
     queryKey: ["customer"],
@@ -59,7 +61,7 @@ const CustomerTable = () => {
         </div>
         <div className="overflow-x-auto rounded-lg shadow-lg">
           <table className="w-full">
-            <thead className="bg-[#DADDEC]">
+            <thead className="bg-indigo-500 text-white">
               <tr>
                 <th className="px-4 py-2">Name</th>
                 <th className="px-4 py-2">Email</th>
@@ -74,17 +76,24 @@ const CustomerTable = () => {
                   <td className="px-4 py-2">{customer.email}</td>
                   <td className="px-4 py-2">{customer.phone}</td>
                   <td className="px-4 py-2">
+                    <Link to={`/view-customer/${customer._id}`}>
+                      <button className="text-green-500 hover:text-green-700  font-semibold rounded-lg px-4 py-2 text-lg">
+                        <FaEye />
+                      </button>
+                    </Link>
                     <button
-                      className="bg-[#3B58FF] hover:bg-[#2C66F5] text-white font-semibold rounded-lg px-4 py-2 mr-2"
-                      onClick={() => toast.warning("code not found")}
+                      className="text-[#3B58FF] hover:text-[#2C66F5] font-semibold rounded-lg px-4 py-2 mr-2 text-lg"
+                      onClick={() =>
+                        navigate(`/update-customer/${customer._id}`)
+                      }
                     >
-                      Edit
+                      <FaEdit />
                     </button>
                     <button
-                      className="bg-red-500 hover:bg-red-700 text-white font-semibold rounded-lg px-4 py-2"
+                      className="text-red-500 hover:text-red-700 te font-semibold rounded-lg px-4 py-2 text-lg"
                       onClick={() => handleDelete(customer._id)}
                     >
-                      Delete
+                      <FaTrash />
                     </button>
                   </td>
                 </tr>

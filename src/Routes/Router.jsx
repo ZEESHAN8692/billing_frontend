@@ -5,8 +5,12 @@ import Spinner from "../Components/Spinner/Spinner";
 import ProtectedRoutes from "./ProtectedRoutes";
 import LoginProtectedRoutes from "./loginProtectedRoute";
 import Layout from "../Layout/Layout";
-import CustomerTablePage from "../Pages/Customer/CustomerTable";
 
+const CustomerTablePage = lazy(() => import("../Pages/Customer/CustomerTable"));
+const PurchaseUpdate = lazy(() => import("../Pages/Purchase/PurchaseUpdate"));
+const UpdateCustomer = lazy(() => import("../Pages/Customer/UpdateCustomer"));
+const ProductUpdate = lazy(() => import("../Pages/ProductsPage/ProductUpdate"));
+const Profile = lazy(() => import("../Pages/Profile/Profile"));
 const CreateInvoices = lazy(() => import("../Pages/Invoice/CreateInvoice"));
 const Invoices = lazy(() => import("../Pages/Invoice/Invoices"));
 const PurchaseTable = lazy(() => import("../Pages/Purchase/PurchaseTable"));
@@ -35,6 +39,7 @@ const Router = () => {
           <Route element={<ProtectedRoutes />}>
             <Route element={<Layout />}>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/add-customers" element={<CustomerPage />} />
               <Route path="/customers" element={<CustomerTablePage />} />
               <Route path="/add-products" element={<ProductsPage />} />
@@ -43,6 +48,11 @@ const Router = () => {
               <Route path="/purchase-order" element={<PurchaseTable />} />
               <Route path="/create-invoices" element={<CreateInvoices />} />
               <Route path="/invoices" element={<Invoices />} />
+
+              <Route path="/update-product/:id" element={<ProductUpdate />} />
+              <Route path="/update-customer/:id" element={<UpdateCustomer />} />
+              <Route path="/update-purchase/:id" element={<PurchaseUpdate />} />
+
               <Route
                 path="/download-invoice/:id"
                 element={<InvoiceComponent />}

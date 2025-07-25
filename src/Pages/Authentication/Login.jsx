@@ -10,9 +10,10 @@ import { LoginUser } from "../../Redux/Slice/loginSlice";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, data } = useSelector((state) => state.login);
+  const { loading } = useSelector((state) => state.login);
   // console.log("Api Login Response ", data.token);
-  const token = data.token;
+  // const token = data?.token;
+
   const {
     register,
     handleSubmit,
@@ -21,9 +22,9 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      await dispatch(LoginUser(data)).unwrap();
+      const response = await dispatch(LoginUser(data)).unwrap();
       toast.success("Login Successfully");
-      localStorage.setItem("token", token);
+      sessionStorage.setItem("token", response?.token);
       navigate("/");
     } catch (error) {
       toast.error(error.message);
@@ -315,8 +316,9 @@ const Login = () => {
                       <button
                         type="submit"
                         className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold cursor-pointer"
+                        disabled={loading}
                       >
-                        LOGIN NOW
+                        {loading ? "Form Submiting..." : "LOGIN NOW"}
                       </button>
                     </div>
                   </div>

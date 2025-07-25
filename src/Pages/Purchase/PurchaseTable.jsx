@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../Components/Spinner/Spinner";
 import { useNavigate } from "react-router-dom";
+import { FaEdit, FaTrash, FaEye } from "react-icons/fa";
 
 const PurchaseTable = () => {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ const PurchaseTable = () => {
         </div>
         <div className="overflow-x-auto rounded-lg shadow-lg">
           <table className="w-full">
-            <thead className="bg-[#DADDEC]">
+            <thead className="bg-indigo-500 text-white">
               <tr>
                 <th className="px-4 py-2">Product Name</th>
                 <th className="px-4 py-2">Supplier</th>
@@ -75,23 +76,32 @@ const PurchaseTable = () => {
             </thead>
             <tbody>
               {filteredPurchases?.map((purchase) => (
-                <tr key={purchase._id} className="hover:bg-[#F5F5F5]">
+                <tr
+                  key={purchase._id}
+                  className="border-b border-gray-200 hover:bg-[#F5F5F5]"
+                >
                   <td className="px-4 py-2">{purchase.product.name}</td>
                   <td className="px-4 py-2">{purchase.supplier}</td>
                   <td className="px-4 py-2">{purchase.quantity}</td>
                   <td className="px-4 py-2">{purchase.purchasePrice}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 flex items-center gap-2">
                     <button
-                      className="bg-[#3B58FF] hover:bg-[#2C66F5] text-white font-semibold rounded-lg px-4 py-2 mr-2 cursor-pointer"
-                      onClick={() => toast.warning("code not found")}
+                      className="text-green-500 hover:text-green-700 font-semibold rounded-lg px-4 py-2 text-lg"
+                      onClick={() => navigate(`/purchase/${purchase._id}`)}
                     >
-                      Edit
+                      <FaEye />
                     </button>
                     <button
-                      className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg px-4 py-2 cursor-pointer"
+                      className="text-[#3B58FF] hover:text-[#2C66F5] font-semibold rounded-lg px-4 py-2 text-lg"
+                      onClick={() => navigate(`/update-purchase/${purchase._id}`)}
+                    >
+                      <FaEdit />
+                    </button>
+                    <button
+                      className="text-red-500 hover:text-red-600 font-semibold rounded-lg px-4 py-2 text-lg"
                       onClick={() => handleDelete(purchase._id)}
                     >
-                      Delete
+                      <FaTrash />
                     </button>
                   </td>
                 </tr>

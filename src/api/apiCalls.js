@@ -9,8 +9,19 @@ import {
   getInvoice_end,
   deleteInvoice_end,
   getSingleInvoice_end,
+  profile_end,
 } from "../api/api_url";
 
+async function profileDetails() {
+  try {
+    const response = await axiosInstance.get(profile_end);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching profile details:", error);
+    throw error;
+  }
+}
 async function getCustomers() {
   try {
     const response = await axiosInstance.get(customer_list_end);
@@ -110,6 +121,7 @@ async function deleteInvoice(invoiceId) {
   }
 }
 export {
+  profileDetails,
   getCustomers,
   getProducts,
   deleteCustomer,

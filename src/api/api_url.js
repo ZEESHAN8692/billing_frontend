@@ -1,6 +1,10 @@
 const base_url = import.meta.env.VITE_API_BASE_URL || "http://localhost:9090/";
+
+// Authentication endpoint
 const register_end = "api/register";
 const login_end = "api/login";
+const profile_end = "api/profile-details";
+
 // customer endpoint
 const addCustomer_end = "api/customer-add";
 const customer_list_end = "api/customer-list";
@@ -26,13 +30,14 @@ const deletePurchase_end = "api/delete-purchase";
 const createInvoice_end = "api/add-invoice";
 const getInvoice_end = "api/list-invoice";
 const getSingleInvoice_end = "api/invoice";
-const updateInvoice_end = "api/update-invoice";
 const deleteInvoice_end = "api/delete-invoice";
+const updateInvoice_end = "api/update-invoice";
 
 export {
   base_url,
   register_end,
   login_end,
+  profile_end,
   addCustomer_end,
   customer_list_end,
   getSingleCustomer_end,
